@@ -1,7 +1,7 @@
 # Личный проект «Код и Магия» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Dmitrii Borodin](https://up.htmlacademy.ru/javascript/5/user/90282).
-* Наставник: `Неизвестно`.
+* Наставник: `Евгений Лепёшкин`.
 
 ---
 
