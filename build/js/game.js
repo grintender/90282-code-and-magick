@@ -262,12 +262,12 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
     var lines = text.split("\n");
 
-    for (let i = 0; i < lines.length; i++) {
+    for (var i = 0; i < lines.length; i++) {
 
         var words = lines[i].split(' ');
         var line = '';
 
-        for (let n = 0; n < words.length; n++) {
+        for (var n = 0; n < words.length; n++) {
             var testLine = line + words[n] + ' ';
             var metrics = this.measureText(testLine);
             var testWidth = metrics.width;
