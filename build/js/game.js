@@ -294,10 +294,10 @@ function canvasMsg(message) {
      var canvas = document.querySelector('canvas');
      var ctx = canvas.getContext('2d');
      ctx.fillStyle ='rgba(0, 0, 0, 0.7)';
-     var ax = 0;
-     var ay = 0;
-     var bx = 300;
-     var by = 150;
+     var ax = 150;
+     var ay = 50;
+     var bx = ax + 100;
+     var by = ay + 75;
      ctx.fillRect(ax + 10, ay + 10, bx + 10, by + 10);
 
      ctx.fillStyle ='#FFFFFF';
@@ -306,7 +306,7 @@ function canvasMsg(message) {
      ctx.fillStyle ='red';
      ctx.font = '16px PT Mono';
      //ctx.fillText(message, 50, 50);
-     ctx.wrapText(message, 20, 20, (bx - 20), 16);
+     ctx.wrapText(message, ax + 20, ay + 20, (bx - 20), 16);
 };
 
 
