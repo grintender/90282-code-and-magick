@@ -258,56 +258,56 @@
     this._pauseListener = this._pauseListener.bind(this);
 };
 
-CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, lineHeight) {
+CanvasRenderingContext2D.prototype.wrapText = function(text, x, y, maxWidth, lineHeight) {
 
     var lines = text.split("\n");
 
     for (var i = 0; i < lines.length; i++) {
 
-        var words = lines[i].split(' ');
-        var line = '';
+      var words = lines[i].split(' ');
+      var line = '';
 
-        for (var n = 0; n < words.length; n++) {
-            var testLine = line + words[n] + ' ';
-            var metrics = this.measureText(testLine);
-            var testWidth = metrics.width;
-            if (testWidth > maxWidth && n > 0) {
-                this.fillText(line, x, y);
-                line = words[n] + ' ';
-                y += lineHeight;
-            } else {
-                line = testLine;
-            }
+      for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = this.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          this.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
         }
+      }
 
-        this.fillText(line, x, y);
-        y += lineHeight;
+      this.fillText(line, x, y);
+    y += lineHeight;
     }
-};
+  };
 
-function canvasMsg(message) {
+  function canvasMsg(message) {
 
-/* ax, ay -> first top of rectangle
-*  bx, by -> second one
-*/
+    /* ax, ay -> first top of rectangle
+     *  bx, by -> second one
+     */
 
-     var canvas = document.querySelector('canvas');
-     var ctx = canvas.getContext('2d');
-     ctx.fillStyle ='rgba(0, 0, 0, 0.7)';
-     var ax = 150;
-     var ay = 50;
-     var bx = ax + 100;
-     var by = ay + 75;
-     ctx.fillRect(ax + 10, ay + 10, bx + 10, by + 10);
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    var ax = 150;
+    var ay = 50;
+    var bx = ax + 100;
+    var by = ay + 75;
+    ctx.fillRect(ax + 10, ay + 10, bx + 10, by + 10);
 
-     ctx.fillStyle ='#FFFFFF';
-     ctx.fillRect(ax, ay, bx, by);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(ax, ay, bx, by);
 
-     ctx.fillStyle ='red';
-     ctx.font = '16px PT Mono';
-     //ctx.fillText(message, 50, 50);
-     ctx.wrapText(message, ax + 20, ay + 20, (bx - 20), 16);
-};
+    ctx.fillStyle = 'red';
+    ctx.font = '16px PT Mono';
+    //ctx.fillText(message, 50, 50);
+    ctx.wrapText(message, ax + 20, ay + 20, (bx - 20), 16);
+  };
 
 
 
@@ -421,7 +421,7 @@ function canvasMsg(message) {
       if (evt.keyCode === 32) {
         evt.preventDefault();
         var needToRestartTheGame = this.state.currentStatus === Verdict.WIN ||
-            this.state.currentStatus === Verdict.FAIL;
+          this.state.currentStatus === Verdict.FAIL;
         this.initializeLevelAndStart(this.level, needToRestartTheGame);
 
         window.removeEventListener('keydown', this._pauseListener);
@@ -568,8 +568,8 @@ function canvasMsg(message) {
             })[0];
 
             return me.state === ObjectState.DISPOSED ?
-                Verdict.FAIL :
-                Verdict.CONTINUE;
+              Verdict.FAIL :
+              Verdict.CONTINUE;
           },
 
           /**
@@ -588,8 +588,8 @@ function canvasMsg(message) {
            */
           function checkTime(state) {
             return Date.now() - state.startTime > 3 * 60 * 1000 ?
-                Verdict.FAIL :
-                Verdict.CONTINUE;
+              Verdict.FAIL :
+              Verdict.CONTINUE;
           }
         ];
       }
@@ -637,8 +637,8 @@ function canvasMsg(message) {
         if (object.sprite) {
           var image = new Image(object.width, object.height);
           image.src = (object.spriteReversed && object.direction & Direction.LEFT) ?
-              object.spriteReversed :
-              object.sprite;
+            object.spriteReversed :
+            object.sprite;
           this.ctx.drawImage(image, object.x, object.y, object.width, object.height);
         }
       }, this);
