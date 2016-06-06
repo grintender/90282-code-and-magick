@@ -256,7 +256,61 @@
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onKeyUp = this._onKeyUp.bind(this);
     this._pauseListener = this._pauseListener.bind(this);
-  };
+};
+
+CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, lineHeight) {
+
+    var lines = text.split("\n");
+
+    for (let i = 0; i < lines.length; i++) {
+
+        var words = lines[i].split(' ');
+        var line = '';
+
+        for (let n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = this.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                this.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+
+        this.fillText(line, x, y);
+        y += lineHeight;
+    }
+};
+
+function canvasMsg(message) {
+
+/* ax, ay -> first top of rectangle
+*  bx, by -> second one
+*/
+
+     var canvas = document.querySelector('canvas');
+     var ctx = canvas.getContext('2d');
+     ctx.fillStyle ='rgba(0, 0, 0, 0.7)';
+     var ax = 0;
+     var ay = 0;
+     var bx = 300;
+     var by = 150;
+     ctx.fillRect(ax + 10, ay + 10, bx + 10, by + 10);
+
+     ctx.fillStyle ='#FFFFFF';
+     ctx.fillRect(ax, ay, bx, by);
+
+     ctx.fillStyle ='red';
+     ctx.font = '16px PT Mono';
+     //ctx.fillText(message, 50, 50);
+     ctx.wrapText(message, 20, 20, (bx - 20), 16);
+};
+
+
+
 
   Game.prototype = {
     /**
@@ -377,19 +431,28 @@
     /**
      * Отрисовка экрана паузы.
      */
+
     _drawPauseScreen: function() {
       switch (this.state.currentStatus) {
         case Verdict.WIN:
-          console.log('you have won!');
+          var message = 'you have won!';
+          canvasMsg(message);
+          //console.log('you have won!');
           break;
         case Verdict.FAIL:
-          console.log('you have failed!');
+          var message = 'such a loser!';
+          canvasMsg(message);
+          //console.log('you have failed!');
           break;
         case Verdict.PAUSE:
-          console.log('game is on pause!');
+          var message = 'paused!';
+          canvasMsg(message);
+          //console.log('game is on pause!');
           break;
         case Verdict.INTRO:
-          console.log('welcome to the game! Press Space to start');
+          var message = 'Welcome, Lucifer, son of the mourning! Im gonna send you to outa space. Hit Space to find another race.';
+          canvasMsg(message);
+          //console.log('welcome to the game! Press Space to start');
           break;
       }
     },
