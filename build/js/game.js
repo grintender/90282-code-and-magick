@@ -256,13 +256,13 @@
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onKeyUp = this._onKeyUp.bind(this);
     this._pauseListener = this._pauseListener.bind(this);
-};
+  };
 
-CanvasRenderingContext2D.prototype.wrapText = function(text, x, y, maxWidth, lineHeight) {
+  CanvasRenderingContext2D.prototype.wrapText = function(text, x, y, maxWidth, lineHeight) {
 
-    var lines = text.split("\n");
+  var lines = text.split('\n');
 
-    for (var i = 0; i < lines.length; i++) {
+  for (var i = 0; i < lines.length; i++) {
 
       var words = lines[i].split(' ');
       var line = '';
@@ -281,7 +281,7 @@ CanvasRenderingContext2D.prototype.wrapText = function(text, x, y, maxWidth, lin
       }
 
       this.fillText(line, x, y);
-    y += lineHeight;
+       y += lineHeight;
     }
   };
 
@@ -307,7 +307,7 @@ CanvasRenderingContext2D.prototype.wrapText = function(text, x, y, maxWidth, lin
     ctx.font = '16px PT Mono';
     //ctx.fillText(message, 50, 50);
     ctx.wrapText(message, ax + 20, ay + 20, (bx - 20), 16);
-  };
+  }
 
 
 
@@ -440,17 +440,17 @@ CanvasRenderingContext2D.prototype.wrapText = function(text, x, y, maxWidth, lin
           //console.log('you have won!');
           break;
         case Verdict.FAIL:
-          var message = 'such a loser!';
+          message = 'such a loser!';
           canvasMsg(message);
           //console.log('you have failed!');
           break;
         case Verdict.PAUSE:
-          var message = 'paused!';
+          message = 'paused!';
           canvasMsg(message);
           //console.log('game is on pause!');
           break;
         case Verdict.INTRO:
-          var message = 'Welcome, Lucifer, son of the mourning! Im gonna send you to outa space. Hit Space to find another race.';
+          message = 'Welcome, Lucifer, son of the mourning! Im gonna send you to outa space. Hit Space to find another race.';
           canvasMsg(message);
           //console.log('welcome to the game! Press Space to start');
           break;
